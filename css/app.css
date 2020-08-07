@@ -1,5 +1,20 @@
 /* BASE STYLES */
 /* LAYOUTS */
+.game {
+  display: flex;
+  width: 360px;
+  flex-wrap: wrap; }
+
+.game-cell {
+  display: inline-block;
+  background: red;
+  margin: 5px;
+  width: 35px;
+  height: 35px; }
+
+export {
+  test: 100px; }
+
 /* MODULES */
 
 /*# sourceMappingURL=app.css.map */
