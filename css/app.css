@@ -2,7 +2,7 @@
 /* LAYOUTS */
 .game {
   display: flex;
-  width: 360px;
+  width: 450px;
   flex-wrap: wrap; }
 
 .game-cell {
@@ -11,9 +11,6 @@
   margin: 5px;
   width: 35px;
   height: 35px; }
-
-export {
-  test: 100px; }
 
 /* MODULES */
 
