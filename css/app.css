@@ -2,15 +2,17 @@
 /* LAYOUTS */
 .game {
   display: flex;
-  width: 450px;
-  flex-wrap: wrap; }
+  flex-wrap: wrap;
+  border: 1px solid black; }
 
 .game-cell {
   display: inline-block;
-  background: red;
-  margin: 5px;
+  border: 1px solid black;
   width: 35px;
   height: 35px; }
+
+.snake {
+  background-color: green; }
 
 /* MODULES */
 
