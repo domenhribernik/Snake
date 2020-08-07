@@ -2,17 +2,22 @@ document.addEventListener('DOMContentLoaded', () => {
   let gameContainer = document.querySelector(".game")
   let numCols = 10;
   let numRows = 10;
-  let gameArr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+  let gameArr = []
   
   for (let i = 0; i < numRows; i++) {
+    gameArr.push([])
     for (let j = 0; j < numCols; j++) {
       let cell = document.createElement("div")
       cell.classList.add("game-cell")
+      cell.classList.add("row" + i)
+      cell.classList.add("col" + j)
+      gameArr[i].push(cell)
       gameContainer.appendChild(cell)
-      //gameArr[i].push(j)
+      
     }
   }
-  //console.log(gameArr);
   let cellWidth = document.querySelector(".game-cell").getBoundingClientRect().width
   gameContainer.style.width = (numCols * cellWidth) + "px" 
+  gameArr[2][2].classList.add("snake")
+  console.log(gameArr[2][2])
 })
