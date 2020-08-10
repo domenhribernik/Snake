@@ -63,19 +63,11 @@ document.addEventListener('DOMContentLoaded', () => {
           gameOver()
         } else {
           if (!grow) {
-            snakeArr[0].classList.remove("snake")
-            snakeArr[0].classList.add("empty-cell")
-            snakeArr.shift()
+            removeSnake()
           }
           currentCol+=1
-          for (let elem of snakeArr) {
-            if (elem == gameArr[currentRow][currentCol]) {
-              gameOver()
-            }
-          }
-          snakeArr.push(gameArr[currentRow][currentCol])
-          snakeArr[snakeArr.length-1].classList.remove("empty-cell")
-          snakeArr[snakeArr.length-1].classList.add("snake")
+          checkCollision()
+          addSnake()
         }
         break;
       case 2:
@@ -83,19 +75,11 @@ document.addEventListener('DOMContentLoaded', () => {
           gameOver()
         } else {
           if (!grow) {
-            snakeArr[0].classList.remove("snake")
-            snakeArr[0].classList.add("empty-cell")
-            snakeArr.shift()
+            removeSnake()
           }
           currentRow-=1   
-          for (let elem of snakeArr) {
-            if (elem == gameArr[currentRow][currentCol]) {
-              gameOver()
-            }
-          }
-          snakeArr.push(gameArr[currentRow][currentCol])
-          snakeArr[snakeArr.length-1].classList.remove("empty-cell")
-          snakeArr[snakeArr.length-1].classList.add("snake")
+          checkCollision()
+          addSnake()
         }  
         break;
       case 3:
@@ -103,19 +87,11 @@ document.addEventListener('DOMContentLoaded', () => {
           gameOver()
         } else {
           if (!grow) {
-            snakeArr[0].classList.remove("snake")
-            snakeArr[0].classList.add("empty-cell")
-            snakeArr.shift()
+            removeSnake()
           }
           currentCol-=1
-          for (let elem of snakeArr) {
-            if (elem == gameArr[currentRow][currentCol]) {
-              gameOver()
-            }
-          }
-          snakeArr.push(gameArr[currentRow][currentCol])
-          snakeArr[snakeArr.length-1].classList.remove("empty-cell")
-          snakeArr[snakeArr.length-1].classList.add("snake")
+          checkCollision()
+          addSnake()
         }
         break;
       case 4:
@@ -123,22 +99,34 @@ document.addEventListener('DOMContentLoaded', () => {
           gameOver()
         } else {
           if (!grow) {
-            snakeArr[0].classList.remove("snake")
-            snakeArr[0].classList.add("empty-cell")
-            snakeArr.shift()
+            removeSnake()
           }
           currentRow+=1
-          for (let elem of snakeArr) {
-            if (elem == gameArr[currentRow][currentCol]) {
-              gameOver()
-            }
-          }
-          snakeArr.push(gameArr[currentRow][currentCol])
-          snakeArr[snakeArr.length-1].classList.remove("empty-cell")
-          snakeArr[snakeArr.length-1].classList.add("snake")
+          checkCollision()
+          addSnake()
         }      
         break;
     }  
+  }
+
+  function addSnake() {
+    snakeArr.push(gameArr[currentRow][currentCol])
+    snakeArr[snakeArr.length-1].classList.remove("empty-cell")
+    snakeArr[snakeArr.length-1].classList.add("snake")
+  }
+
+  function removeSnake() {
+    snakeArr[0].classList.remove("snake")
+    snakeArr[0].classList.add("empty-cell")
+    snakeArr.shift()
+  }
+
+  function checkCollision() {
+    for (let elem of snakeArr) {
+      if (elem == gameArr[currentRow][currentCol]) {
+        gameOver()
+      }
+    }
   }
 
   function createApple() {
