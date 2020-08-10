@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": ";;AAAA,KAAK;EACH,OAAO,EAAE,IAAI;EACb,SAAS,EAAE,IAAI;EACf,MAAM,EAAE,eAAe;EAEvB,gBAAU;IACR,OAAO,EAAE,YAAY;IACrB,MAAM,EAAE,eAAe;IACvB,KAAK,ECPG,IAAI;IDQZ,MAAM,ECRE,IAAI;EDUd,YAAM;IACJ,gBAAgB,ECVN,KAAK;;ADYnB,MAAM;EACJ,gBAAgB,ECZJ,GAAG",
+"sources": ["../sass/2-layouts/_game.sass","../sass/_variables.sass"],
+"names": [],
+"file": "style.css"
+}

@@ -3,8 +3,11 @@ document.addEventListener('DOMContentLoaded', () => {
   let numCols = 10
   let numRows = 10
   let gameArr = []
+  let snakeArr = []
   let currentCol = 2
   let currentRow = 2
+  let appleCell
+  let grow = false
   let moveId
   let direction = 1
   
@@ -14,14 +17,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let cellWidth = document.querySelector(".game-cell").getBoundingClientRect().width
   gameContainer.style.width = (numCols * cellWidth) + "px" 
-  gameArr[currentRow][currentCol].classList.add("snake")
+  snakeArr.push(gameArr[currentRow][currentCol])
+  snakeArr[snakeArr.length-1].classList.add("snake")
 
   function startGame(e) {
     if (e.keyCode == 32) {
       document.removeEventListener('keyup', startGame)
       console.log("Game has started");
-      moveId = setInterval(moveSnake, 200)
+      moveId = setInterval(moveSnake, 150)
     }
+  }
+
+  function gameOver() {
+    console.log("game over")
+    clearInterval(moveId)
+    document.removeEventListener('keydown', changeDirection)
   }
 
   function createGrid(Cols, Rows) {
@@ -29,9 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
       gameArr.push([])
       for (let j = 0; j < Cols; j++) {
         let cell = document.createElement("div")
-        cell.classList.add("game-cell")
-        cell.classList.add("row" + i)
-        cell.classList.add("col" + j)
+        cell.classList.add("game-cell", "empty-cell", "row" + i, "col" + j)
         gameArr[i].push(cell)
         gameContainer.appendChild(cell)
       }
@@ -39,50 +47,105 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function moveSnake() {
+    grow = false
+    appleCell = document.querySelector(".apple")
+    if (appleCell == undefined) {
+      createApple()
+    }
+    else if (appleCell == snakeArr[snakeArr.length-1]) {
+      appleCell.classList.remove("apple")
+      grow = true
+    }
     document.addEventListener('keydown', changeDirection)
     switch (direction) {
       case 1:
         if (currentCol == numCols-1) {
-          console.log("game over");
-          clearInterval(moveId)
+          gameOver()
         } else {
-          gameArr[currentRow][currentCol].classList.remove("snake")
+          if (!grow) {
+            snakeArr[0].classList.remove("snake")
+            snakeArr[0].classList.add("empty-cell")
+            snakeArr.shift()
+          }
           currentCol+=1
-          gameArr[currentRow][currentCol].classList.add("snake")
+          for (let elem of snakeArr) {
+            if (elem == gameArr[currentRow][currentCol]) {
+              gameOver()
+            }
+          }
+          snakeArr.push(gameArr[currentRow][currentCol])
+          snakeArr[snakeArr.length-1].classList.remove("empty-cell")
+          snakeArr[snakeArr.length-1].classList.add("snake")
         }
         break;
       case 2:
         if (currentRow == 0) {
-          console.log("game over");
-          clearInterval(moveId)
+          gameOver()
         } else {
-          gameArr[currentRow][currentCol].classList.remove("snake")
-          currentRow-=1
-          gameArr[currentRow][currentCol].classList.add("snake")    
+          if (!grow) {
+            snakeArr[0].classList.remove("snake")
+            snakeArr[0].classList.add("empty-cell")
+            snakeArr.shift()
+          }
+          currentRow-=1   
+          for (let elem of snakeArr) {
+            if (elem == gameArr[currentRow][currentCol]) {
+              gameOver()
+            }
+          }
+          snakeArr.push(gameArr[currentRow][currentCol])
+          snakeArr[snakeArr.length-1].classList.remove("empty-cell")
+          snakeArr[snakeArr.length-1].classList.add("snake")
         }  
         break;
       case 3:
         if (currentCol == 0) {
-          console.log("game over");
-          clearInterval(moveId)
+          gameOver()
         } else {
-          gameArr[currentRow][currentCol].classList.remove("snake")
+          if (!grow) {
+            snakeArr[0].classList.remove("snake")
+            snakeArr[0].classList.add("empty-cell")
+            snakeArr.shift()
+          }
           currentCol-=1
-          gameArr[currentRow][currentCol].classList.add("snake")
+          for (let elem of snakeArr) {
+            if (elem == gameArr[currentRow][currentCol]) {
+              gameOver()
+            }
+          }
+          snakeArr.push(gameArr[currentRow][currentCol])
+          snakeArr[snakeArr.length-1].classList.remove("empty-cell")
+          snakeArr[snakeArr.length-1].classList.add("snake")
         }
         break;
       case 4:
         if (currentRow == numRows-1) {
-          console.log("game over");
-          clearInterval(moveId)
+          gameOver()
         } else {
-          gameArr[currentRow][currentCol].classList.remove("snake")
+          if (!grow) {
+            snakeArr[0].classList.remove("snake")
+            snakeArr[0].classList.add("empty-cell")
+            snakeArr.shift()
+          }
           currentRow+=1
-          gameArr[currentRow][currentCol].classList.add("snake")
+          for (let elem of snakeArr) {
+            if (elem == gameArr[currentRow][currentCol]) {
+              gameOver()
+            }
+          }
+          snakeArr.push(gameArr[currentRow][currentCol])
+          snakeArr[snakeArr.length-1].classList.remove("empty-cell")
+          snakeArr[snakeArr.length-1].classList.add("snake")
         }      
         break;
-    }
-    
+    }  
+  }
+
+  function createApple() {
+    let emptyCells = document.querySelectorAll(".empty-cell")
+    let rNum = Math.round(Math.random() * emptyCells.length)
+    emptyCells[rNum].classList.add("apple")
+    console.log();
   }
 
   function changeDirection(e) {

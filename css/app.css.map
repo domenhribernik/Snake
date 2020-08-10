@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": ";;AAAA,KAAK;EACH,OAAO,EAAE,IAAI;EACb,SAAS,EAAE,IAAI;EACf,MAAM,EAAE,eAAe;;AAEzB,UAAU;EACR,OAAO,EAAE,YAAY;EACrB,MAAM,EAAE,eAAe;EACvB,KAAK,ECPK,IAAI;EDQd,MAAM,ECRI,IAAI;;ADUhB,MAAM;EACJ,gBAAgB,EAAE,KAAK",
-"sources": ["../sass/2-layouts/_game.sass","../sass/_variables.sass"],
-"names": [],
-"file": "app.css"
-}
