@@ -1,0 +1,43 @@
+.toggle
+  font-family: Helvetica, Arial, sans-serif
+  display: inline-block
+  vertical-align: top
+  margin: 0 15px 0 0
+ 
+.toggle-input
+  display: none
+
+.toggle-button
+  position: relative
+  display: inline-block
+  font-size: 1rem
+  line-height: 20px
+  text-transform: uppercase
+  border: solid 2px black
+  border-radius: 10px
+  color: white
+  width: 80px
+  height: 30px
+  transition: all 0.3s ease
+  cursor: pointer
+
+  &::before
+    position: absolute
+    top: 5px
+    left: 38px
+    content: "off"
+    display: inline-block
+    height: 20px
+    padding: 0px 3px
+    background: white
+    color: black
+    transition: all 0.3s ease
+
+.toggle-input:checked + .toggle-button
+  border: solid 2px #00b3b4
+
+  &::before
+    left: 5px
+    content: "on"
+    color: #00b3b4
+    

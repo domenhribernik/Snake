@@ -1,20 +1,103 @@
 /* BASE STYLES */
+@import url(https://fonts.googleapis.com/css?family=Dosis:700);
+body {
+  transition: 0.6s all ease;
+  font-family: "Dosis", Helvetica, Arial, sans-serif;
+  color: #34495e;
+  padding-top: 40px;
+  text-shadow: white 1px 1px 1px; }
+
 /* LAYOUTS */
+.value {
+  border-bottom: 4px dashed #bdc3c7;
+  text-align: center;
+  font-weight: bold;
+  font-size: 10em;
+  width: 300px;
+  height: 100px;
+  line-height: 60px;
+  margin: 40px auto; }
+
+input[type="range"] {
+  display: block;
+  -webkit-appearance: none;
+  background-color: #bdc3c7;
+  width: 300px;
+  height: 5px;
+  border-radius: 5px;
+  margin: 0 auto;
+  outline: 0; }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    background-color: #e74c3c;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 2px solid white;
+    cursor: pointer;
+    transition: 0.3s ease-in-out; }
+    input[type="range"]::-webkit-slider-thumb::-webkit-slider-thumb:hover {
+      background-color: white;
+      border: 2px solid #e74c3c; }
+    input[type="range"]::-webkit-slider-thumb::-webkit-slider-thumb:active {
+      transform: scale(1.6); }
+
+/* MODULES */
 .game {
   display: flex;
   flex-wrap: wrap;
-  border: 1px solid black; }
+  border: 3px solid black; }
   .game .game-cell {
     display: inline-block;
-    border: 1px solid black;
     width: 35px;
-    height: 35px; }
+    height: 35px;
+    border: 2px solid white;
+    box-sizing: border-box; }
   .game .snake {
     background-color: green; }
 
 .apple {
   background-color: red; }
 
-/* MODULES */
+.toggle {
+  font-family: Helvetica, Arial, sans-serif;
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 15px 0 0; }
+
+.toggle-input {
+  display: none; }
+
+.toggle-button {
+  position: relative;
+  display: inline-block;
+  font-size: 1rem;
+  line-height: 20px;
+  text-transform: uppercase;
+  border: solid 2px black;
+  border-radius: 10px;
+  color: white;
+  width: 80px;
+  height: 30px;
+  transition: all 0.3s ease;
+  cursor: pointer; }
+  .toggle-button::before {
+    position: absolute;
+    top: 5px;
+    left: 38px;
+    content: "off";
+    display: inline-block;
+    height: 20px;
+    padding: 0px 3px;
+    background: white;
+    color: black;
+    transition: all 0.3s ease; }
+
+.toggle-input:checked + .toggle-button {
+  border: solid 2px #00b3b4; }
+  .toggle-input:checked + .toggle-button::before {
+    left: 5px;
+    content: "on";
+    color: #00b3b4; }
 
 /*# sourceMappingURL=style.css.map */

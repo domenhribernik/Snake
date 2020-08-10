@@ -1,5 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
   let gameContainer = document.querySelector(".game")
+  let gameCells = gameContainer.children;
+  let darkMode = document.getElementById("toggle")
+  let body = document.querySelector('body')
+  let rowSlider = document.getElementById("slider-row")
+  let colSlider = document.getElementById("slider-col")
   let numCols = 10
   let numRows = 10
   let gameArr = []
@@ -10,10 +15,36 @@ document.addEventListener('DOMContentLoaded', () => {
   let grow = false
   let moveId
   let direction = 1
-  
+
+  rowSlider.addEventListener("input", () => {
+    let newValue = rowSlider.value
+    let target = document.querySelector('.row')
+    target.innerHTML = newValue
+    numRows = newValue   
+  })
+
+  colSlider.addEventListener("input", () => {
+    let newValue = colSlider.value
+    let target = document.querySelector('.col')
+    target.innerHTML = newValue
+    numCols = newValue
+    createGrid(colSlider.value, rowSlider.value)
+  })
+
   createGrid(numCols, numRows)
 
   document.addEventListener('keyup', startGame)
+  darkMode.addEventListener('click', () => {
+    if (darkMode.checked) {
+      body.style.background = "black"
+      body.style.color = "white"
+      gameContainer.style.borderColor = "white"      
+    } else {
+      body.style.background = "white"
+      body.style.color = "black"
+      gameContainer.style.borderColor = "black"  
+    }
+  })
 
   let cellWidth = document.querySelector(".game-cell").getBoundingClientRect().width
   gameContainer.style.width = (numCols * cellWidth) + "px" 
@@ -24,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.keyCode == 32) {
       document.removeEventListener('keyup', startGame)
       console.log("Game has started");
-      moveId = setInterval(moveSnake, 150)
+      moveId = setInterval(moveSnake, 125)
     }
   }
 
