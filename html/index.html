@@ -4,17 +4,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"/>
   <title>Snake</title>
 </head>
 <body>
+  <div class="text">Press space to start the game</div>
   <div class="container">
     <h1 class="title">Snake</h1>
-    <div class="game">
+      <div class="game">
+      </div>
+    <div class="buttons">
+      <button id="restart"><i class="fas fa-redo-alt icon"></i></button>
+      <label for="toggle" class="toggle">
+        <input type="checkbox" id="toggle" class="toggle-input" />
+        <span class="toggle-button"></span>
+      </label>
     </div>
-    <label for="toggle" class="toggle">
-      <input type="checkbox" id="toggle" class="toggle-input" />
-      <span class="toggle-button"></span>
-    </label>
     <div class="slider-container">
         <div class="slider-col">
           <input type="range" min="10" max="15" value="10" class="slider" id="slider-col">
