@@ -1,37 +1,34 @@
-.value
-  border-bottom: 4px dashed #bdc3c7
-  text-align: center
-  font-weight: bold
-  font-size: 10em
-  width: 300px
-  height: 100px
-  line-height: 60px
-  margin: 40px auto
-
-input[type="range"]
-  display: block
-  -webkit-appearance: none
-  background-color: #bdc3c7
-  width: 300px
-  height: 5px
-  border-radius: 5px
-  margin: 0 auto
-  outline: 0
-
-  &::-webkit-slider-thumb 
-    -webkit-appearance: none
-    background-color: #e74c3c
-    width: 30px
-    height: 30px
-    border-radius: 50%
-    border: 2px solid white
-    cursor: pointer
-    transition: .3s ease-in-out
-
-    &::-webkit-slider-thumb:hover 
-      background-color: white
-      border: 2px solid #e74c3c
-    
-    &::-webkit-slider-thumb:active
-      transform: scale(1.6)
+.container 
+  display: grid
+  grid-template-columns: auto auto
+  grid-template-rows: auto auto auto
+  grid-template-areas: "title toggle""game slider""game slider" 
+  justify-content: right
+  align-items: top
   
+  .slider-container
+    grid-area: slider
+
+  .toggle 
+    grid-area: toggle
+
+  .game
+    grid-area: game
+
+  .title
+    grid-area: title
+
+.rotate
+  transform: rotate(90deg)
+
+.slider-container
+  display: grid
+  margin-left: -100px
+  grid-template-columns: 200px auto
+  grid-template-rows: 200px auto
+  grid-template-areas: ". slider-col""slider-row ."
+  
+  .slider-col
+    grid-area: slider-col
+  .slider-row
+    grid-area: slider-row

@@ -3,45 +3,56 @@
 body {
   transition: 0.6s all ease;
   font-family: "Dosis", Helvetica, Arial, sans-serif;
-  color: #34495e;
+  color: #5D5179;
   padding-top: 40px;
-  text-shadow: white 1px 1px 1px; }
+  position: relative;
+  display: inline-block;
+  left: 50%;
+  transform: translateX(-50%); }
 
 /* LAYOUTS */
-.value {
-  border-bottom: 4px dashed #bdc3c7;
-  text-align: center;
-  font-weight: bold;
-  font-size: 10em;
-  width: 300px;
-  height: 100px;
-  line-height: 60px;
-  margin: 40px auto; }
+.container {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto auto auto;
+  grid-template-areas: "title toggle" "game slider" "game slider";
+  justify-content: right;
+  align-items: top; }
+  .container .slider-container {
+    grid-area: slider; }
+  .container .toggle {
+    grid-area: toggle; }
+  .container .game {
+    grid-area: game; }
+  .container .title {
+    grid-area: title; }
 
-input[type="range"] {
-  display: block;
-  -webkit-appearance: none;
-  background-color: #bdc3c7;
-  width: 300px;
-  height: 5px;
-  border-radius: 5px;
-  margin: 0 auto;
-  outline: 0; }
-  input[type="range"]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    background-color: #e74c3c;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    border: 2px solid white;
-    cursor: pointer;
-    transition: 0.3s ease-in-out; }
-    input[type="range"]::-webkit-slider-thumb::-webkit-slider-thumb:hover {
-      background-color: white;
-      border: 2px solid #e74c3c; }
-    input[type="range"]::-webkit-slider-thumb::-webkit-slider-thumb:active {
-      transform: scale(1.6); }
+.rotate {
+  transform: rotate(90deg); }
 
+.slider-container {
+  display: grid;
+  margin-left: -100px;
+  grid-template-columns: 200px auto;
+  grid-template-rows: 200px auto;
+  grid-template-areas: ". slider-col" "slider-row ."; }
+  .slider-container .slider-col {
+    grid-area: slider-col; }
+  .slider-container .slider-row {
+    grid-area: slider-row; }
+
+@media screen and (max-width: 1150px) {
+  .container {
+    grid-template-areas: "title toggle" "game game" "slider slider";
+    justify-content: right;
+    align-items: top; }
+
+  .slider-container {
+    margin-top: 40px;
+    margin-left: -140px; } }
+@media screen and (max-width: 600px) {
+  .slider-container {
+    display: none; } }
 /* MODULES */
 .game {
   display: flex;
@@ -54,16 +65,53 @@ input[type="range"] {
     border: 2px solid white;
     box-sizing: border-box; }
   .game .snake {
-    background-color: green; }
+    background-color: #5D5179; }
 
 .apple {
-  background-color: red; }
+  background-color: black; }
+
+input[type="range"] {
+  display: block;
+  -webkit-appearance: none;
+  background-color: #bdc3c7;
+  width: 300px;
+  height: 5px;
+  border-radius: 5px;
+  outline: 0; }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    background-color: #5D5179;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 2px solid white;
+    cursor: pointer;
+    transition: 0.3s ease-in-out; }
+    input[type="range"]::-webkit-slider-thumb:hover {
+      background-color: white;
+      border: 2px solid #5D5179; }
+    input[type="range"]::-webkit-slider-thumb:active {
+      transform: scale(1.6); }
+
+.value {
+  text-align: center;
+  font-weight: bold;
+  font-size: 7em;
+  width: 100px;
+  margin-left: 110px;
+  height: 200px; }
+
+.row {
+  position: relative;
+  bottom: 65px;
+  left: 80px; }
 
 .toggle {
   font-family: Helvetica, Arial, sans-serif;
   display: inline-block;
-  vertical-align: top;
-  margin: 0 15px 0 0; }
+  position: relative;
+  margin: auto 0px;
+  left: calc(100% - 80px); }
 
 .toggle-input {
   display: none; }
@@ -74,7 +122,7 @@ input[type="range"] {
   font-size: 1rem;
   line-height: 20px;
   text-transform: uppercase;
-  border: solid 2px black;
+  border: solid 3px black;
   border-radius: 10px;
   color: white;
   width: 80px;
@@ -89,15 +137,15 @@ input[type="range"] {
     display: inline-block;
     height: 20px;
     padding: 0px 3px;
-    background: white;
+    font-weight: bold;
     color: black;
     transition: all 0.3s ease; }
 
 .toggle-input:checked + .toggle-button {
-  border: solid 2px #00b3b4; }
+  border: solid 3px white; }
   .toggle-input:checked + .toggle-button::before {
     left: 5px;
     content: "on";
-    color: #00b3b4; }
+    color: white; }
 
 /*# sourceMappingURL=style.css.map */

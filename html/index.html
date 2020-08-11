@@ -7,22 +7,23 @@
   <title>Snake</title>
 </head>
 <body>
-  <h1>Snake</h1>
   <div class="container">
+    <h1 class="title">Snake</h1>
     <div class="game">
     </div>
     <label for="toggle" class="toggle">
       <input type="checkbox" id="toggle" class="toggle-input" />
       <span class="toggle-button"></span>
     </label>
-    
-    <div class="slider-row">
-      <div class="value row">10</div>
-      <input type="range" min="10" max="20" value="10" class="slider" id="slider-row">
-    </div>
-    <div class="slider-col">
-      <div class="value col">10</div>
-      <input type="range" min="10" max="20" value="10" class="slider" id="slider-col">
+    <div class="slider-container">
+        <div class="slider-col">
+          <input type="range" min="10" max="15" value="10" class="slider" id="slider-col">
+          <div class="value col">10</div>
+        </div>
+        <div class="slider-row">
+          <input type="range" min="10" max="15" value="10" class="slider rotate" id="slider-row">
+          <div class="value row">10</div>
+        </div>
     </div>
   </div>
   <script src="../js/app.js"></script>
