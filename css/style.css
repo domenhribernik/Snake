@@ -16,6 +16,18 @@ body {
   left: 50%;
   transform: translateX(-50%); }
 
+h2, h1 {
+  display: inline-block;
+  transition: 0.6s color ease; }
+
+h2 {
+  font-size: 1.3rem; }
+
+h1 {
+  font-weight: bold;
+  color: #5D5179;
+  font-size: 2.1rem; }
+
 /* LAYOUTS */
 .container {
   display: grid;
@@ -57,24 +69,27 @@ body {
   position: relative;
   display: inline;
   font-size: 1.5rem;
-  top: 120px;
+  top: 125px;
   left: 15px; }
+
+.score {
+  left: 140px; }
 
 .icon {
   position: relative;
-  left: calc(100% - 27px);
-  font-size: 2.2rem;
-  bottom: 3px; }
+  left: calc(100% - 22px);
+  font-size: 2rem;
+  bottom: 5px; }
   .icon:hover {
     animation: restart 0.8s 1 linear; }
 
 #restart {
   position: relative;
-  height: 32px;
-  width: 32px;
+  height: 30px;
+  width: 30px;
   left: calc(100% - 130px);
   font-size: 2rem;
-  bottom: 1px;
+  bottom: 0px;
   border: none;
   background: white;
   outline: none;
@@ -92,7 +107,10 @@ body {
     margin-left: -140px; }
 
   body {
-    padding: 0px; } }
+    padding: 0px; }
+
+  h2 {
+    font-size: 1rem; } }
 @media screen and (max-width: 600px) {
   .slider-container {
     display: none; } }
@@ -112,8 +130,10 @@ body {
     display: inline-block;
     width: 35px;
     height: 35px;
-    border: 2.6px solid white;
-    box-sizing: border-box; }
+    border: 2.7px solid white;
+    border-radius: 0.1px;
+    box-sizing: border-box;
+    transition: 0.6s border ease; }
   .game .snake {
     background-color: #5D5179; }
   .game .dark-snake {
@@ -153,15 +173,22 @@ input[type="range"] {
   font-weight: bold;
   font-size: 7em;
   width: 100px;
-  margin-left: 110px;
+  margin-left: 105px;
   margin-top: 10px;
   height: 200px;
   cursor: context-menu; }
 
 .row {
   position: relative;
-  bottom: 75px;
-  left: 80px; }
+  bottom: 85px;
+  left: 85px; }
+  .row::after {
+    content: "x";
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    left: 136px;
+    bottom: 195px; }
 
 .toggle {
   font-family: Helvetica, Arial, sans-serif;

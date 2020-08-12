@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let darkMode = document.getElementById("toggle")
   let body = document.querySelector('body')
   let text = document.querySelector('.text')
+  let scoreText = document.querySelector('.score')
   let restartButton = document.getElementById('restart')
   let numCols = 10
   let numRows = 10
@@ -18,6 +19,8 @@ document.addEventListener('DOMContentLoaded', () => {
   let appleCell
   let grow = false
   let moveId
+  let score
+  let collision
   let direction = 1
 
   window.onresize = () => {
@@ -60,6 +63,8 @@ document.addEventListener('DOMContentLoaded', () => {
       body.classList.add("darkmode")
       restartButton.style.background = "black"
       document.querySelector(".icon").style.color = "white"
+      document.querySelector("h1").style.color = "#F4D35E"
+      text.style.color = "white"
       if (appleCell != undefined) {
         appleCell.classList.remove("apple")
         appleCell.classList.add("dark-apple")
@@ -76,6 +81,8 @@ document.addEventListener('DOMContentLoaded', () => {
       body.classList.remove("darkmode")
       restartButton.style.background = "white"
       document.querySelector(".icon").style.color = "black"
+      text.style.color = "black"
+      document.querySelector("h1").style.color = "#5D5179"
       if (appleCell != undefined) {
         appleCell.classList.remove("dark-apple")
         appleCell.classList.add("apple")
@@ -97,22 +104,26 @@ document.addEventListener('DOMContentLoaded', () => {
       rowSlider.disabled = true;
       colSlider.disabled = true;
       restartButton.removeEventListener('click', restartGame)
-      console.log("Game has started");
       moveId = setInterval(moveSnake, 125)
       console.log(moveId);
     }
   }
 
   function gameOver() {
-    console.log("game over")
-    text.textContent = "Game Over!";
+    score = snakeArr.length
+    text.textContent = "Game Over!"
+    scoreText.textContent = "Score: " + score
     clearInterval(moveId)
     if (darkMode.checked) {
-      appleCell.classList.remove("dark-apple")
+      if (appleCell != undefined) {
+        appleCell.classList.remove("dark-apple")
+      }
       text.style.color = "white"
     }
     else {
-      appleCell.classList.remove("apple")
+      if (appleCell != undefined) {
+        appleCell.classList.remove("apple")
+      } 
       text.style.color = "black"
     }
     text.style.zIndex = 1
@@ -130,6 +141,14 @@ document.addEventListener('DOMContentLoaded', () => {
       snakeArr[snakeArr.length-1].classList.remove("snake")
     }
     snakeArr.pop()
+    if (score == snakeArr.length && collision != null) {
+      if (darkMode.checked) {
+        collision.classList.add("dark-snake")
+      }
+      else {
+        collision.classList.add("snake")
+      }
+    } 
     if(snakeArr.length == 0) {
       clearInterval(destroyId)
     }
@@ -148,7 +167,8 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       text.style.color = "black"
     }
-    text.textContent = "Press space to start the game";
+    text.textContent = "Press space to start the game"
+    scoreText.textContent = "" 
     text.style.zIndex = 1
     appleCell = undefined
     rowSlider.value = 10
@@ -163,11 +183,11 @@ document.addEventListener('DOMContentLoaded', () => {
     currentRow = 2
     grow = false
     direction = 1
+    collision = null
     rowSlider.disabled = false;
     colSlider.disabled = false;
     createGrid(numCols, numRows)
     document.addEventListener('keyup', startGame)
-    console.log("this works");
   }
 
   function createGrid(Cols, Rows) {
@@ -303,6 +323,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function checkCollision() {
     for (let elem of snakeArr) {
       if (elem == gameArr[currentRow][currentCol]) {
+        collision = elem
         gameOver()
       }
     }
@@ -315,27 +336,24 @@ document.addEventListener('DOMContentLoaded', () => {
       emptyCells[rNum].classList.add("dark-apple")
     }
     else {
+      console.log(rNum);
       emptyCells[rNum].classList.add("apple")
     }
     console.log();
   }
 
   function changeDirection(e) {
-    if (e.keyCode == 68 && direction != 1 && direction != 3) {
+    if (e.keyCode == 68 || e.keyCode == 39 && direction != 1 && direction != 3) {
       direction = 1
-      console.log("D");
     }
-    else if (e.keyCode == 87 && direction != 2 && direction != 4) {
+    else if (e.keyCode == 87 || e.keyCode == 38 && direction != 2 && direction != 4) {
       direction = 2
-      console.log("W");
     }
-    else if (e.keyCode == 65 && direction != 3 && direction != 1) {
+    else if (e.keyCode == 65 || e.keyCode == 37 && direction != 3 && direction != 1) {
       direction = 3
-      console.log("A");
     }
-    else if (e.keyCode == 83 && direction != 4 && direction != 2) {
+    else if (e.keyCode == 83 || e.keyCode == 40  && direction != 4 && direction != 2) {
       direction = 4
-      console.log("S");
     }
   }
 })

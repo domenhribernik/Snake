@@ -29,12 +29,20 @@ input[type="range"]
   font-weight: bold
   font-size: 7em
   width: 100px
-  margin-left: 110px
+  margin-left: 105px
   margin-top: 10px
   height: 200px
   cursor: context-menu
 
 .row
   position: relative
-  bottom: 75px
-  left: 80px
+  bottom: 85px
+  left: 85px
+
+  &::after
+    content: "x"
+    width: 20px
+    height: 20px
+    position: absolute
+    left: 136px
+    bottom: 195px
